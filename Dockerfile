@@ -1,8 +1,8 @@
-FROM tomcat:7-jre8
+FROM tomcat:8.5-jdk8
 
 # Environment variables are defaults and should be overwritten on docker-run!
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME /usr/local/openjdk-8
 ENV TOMCAT_HOME /usr/local/tomcat
 ENV BCS /opt/projektron/bcs
 ENV PROJEKTRON_VERSION projektron-bcs-7.26.40
