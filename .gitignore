@@ -5,3 +5,4 @@ repo/
 server/
 updates/
 tools/scripts/*.zip
+.token
