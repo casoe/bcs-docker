@@ -5,13 +5,12 @@ FROM tomcat:8.5-jdk8
 ENV JAVA_HOME /usr/local/openjdk-8
 ENV TOMCAT_HOME /usr/local/tomcat
 ENV BCS /opt/projektron/bcs
-ENV PROJEKTRON_VERSION projektron-bcs-7.26.40
+ENV PROJEKTRON_VERSION projektron-bcs-21.3.24
 
 # Install netstat
 
 RUN apt-get update && apt-get install -y \
-	net-tools \
-	postgresql
+	net-tools
 
 # Copy scripts to root folder
 COPY tools/ /var/

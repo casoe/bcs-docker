@@ -7,7 +7,7 @@ tail=/usr/bin/tail
 bash=/bin/bash
 
 # Variables defined in docker run
-echo "variables are:"
+echo "Variables are:"
 echo "BCS=$BCS"
 echo "JAVA=$JAVA_HOME"
 echo "TOMCAT=$TOMCAT_HOME"
@@ -21,14 +21,6 @@ projektron_major=${projektron_minor:0:4}
 echo "Minor Projektron Version=$projektron_minor"
 echo "Major Projektron Version=$projektron_major"
 
-
-# Download url is this
-URL=https://support.projektron.de/webdav/BCS/Projekte/Downloads/Projektron_BCS_$projektron_major/$projektron_minor/.Dateien/projektron-bcs-$projektron_minor.zip
-echo "Download URL=$URL"
-# Credentials are stored in /scripts/credentials, first line is username, second line is password
-credfile=/scripts/credentials
-USERNAME=$(sed '1q;d' $credfile)
-PASSWORD=$(sed '2q;d' $credfile)
 #Change to /scripts and check if install file exists
 cd /scripts
 if [ -e projektron-bcs-$projektron_minor.zip ]
@@ -36,15 +28,12 @@ then
   echo "Install file exists, using projektron-bcs-$projektron_minor.zip"
 else
   # Download specified Projektron Version to /scripts directory, if not yet existent
-  echo "Downloading installation file"
-  cd /scripts
-  wget --user=$USERNAME --password=$PASSWORD  $URL
+  echo "Error: missing file"
+	exit 1
 fi
+
 # Unzip downloaded file to BCS directory and remove zip file
 unzip -o projektron-bcs-$projektron_minor.zip -d $BCS
-
-# Copy license file to /bin
-cp /license/$LICENSE $BCS/bin
 
 # Last step start tomcat server
 cd $TOMCAT_HOME/bin

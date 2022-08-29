@@ -1,0 +1,7 @@
+data_files/
+data_ftindex/
+db/
+repo/
+server/
+updates/
+tools/scripts/*.zip
