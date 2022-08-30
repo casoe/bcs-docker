@@ -1,7 +1,5 @@
-data_files/
-data_ftindex/
-db/
 repo/
+restore/
 updates/
 .token
 
