@@ -25,8 +25,6 @@ mkdir -p server
 mkdir -p updates
 
 # 172.16.1.102 ist der BCS-Testserver
-rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/updates/        updates
-rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/restore/db      restore/db
-rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/restore/files   restore/files
-rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/restore/ftindex restore/ftindex
+rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/updates/ updates
+rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/restore/ restore
 
