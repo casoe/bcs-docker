@@ -18,13 +18,21 @@ else
   git -C repo/ pull
 fi
 
-mkdir -p data_files
-mkdir -p data_ftindex
-mkdir -p db
+mkdir -p restore
 mkdir -p server
 mkdir -p updates
 
 # 172.16.1.102 ist der BCS-Testserver
-rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/updates/ updates
-rsync -avP --delete root@172.16.1.102:/opt/projektron/bcs/restore/ restore
+rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/updates/ updates
+rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/ restore
 
+mkdir -p install
+
+cd install
+rm -rf *
+cp -v ../updates/projektron-bcs-latest.zip .
+unzip projektron-bcs-latest.zip -d server
+cp -vR ../repo/* server/
+tar cvzf server.tar.gz server/
+rm -rf projektron-bcs-latest.zip
+rm -rf server

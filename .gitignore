@@ -2,5 +2,5 @@ repo/
 restore/
 server/
 updates/
-tools/scripts/*.zip
+install/
 .token
