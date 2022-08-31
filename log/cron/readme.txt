@@ -1,0 +1,1 @@
+This directory homes log files of cronjobs
