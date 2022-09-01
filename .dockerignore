@@ -1,5 +1,7 @@
-repo/
 data/
+db/
+log/
+repo/
 updates/
 .token
 
