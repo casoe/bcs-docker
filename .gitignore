@@ -1,5 +1,6 @@
 db/
 data/
+log/
 repo/
 server/
 updates/

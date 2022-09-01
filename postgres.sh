@@ -11,7 +11,8 @@ fi
 
 docker run -d \
   --name=postgres \
-  --restart=always \
+  --restart unless-stopped \
+  --net=host \
   -p 5432:5432 \
   -v pgdata:/var/lib/postgresql/data \
   -v ~/bcs-docker/restore/db:/restore \
