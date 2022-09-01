@@ -19,5 +19,4 @@ docker run -d \
   -v ~/bcs-docker/data/files:/opt/projektron/bcs/server/data/files \
   -v ~/bcs-docker/data/ftindex:/opt/projektron/bcs/server/data/FTIndex \
   -v ~/bcs-docker/repo/tomcat/conf85_docker:/usr/local/tomcat/conf \
-  -p 8080:8080 \
   bcs
