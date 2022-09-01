@@ -15,15 +15,17 @@ if [ -z "$(ls -A repo)" ]; then
   git clone https://oauth2:$TOKEN@git.inform-software.com/gb30-bcs/gs3-bcs.git repo
 else
   echo "Ordner repo nicht leer, git pull für update"
-#  git -C repo/ pull
+  git -C repo/ pull
 fi
 
 mkdir -p data
 mkdir -p updates
 
 # 172.16.1.102 is the BCS test server
-#rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/ data
-#rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/updates/ updates
+rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/files/ data/files
+rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/ftindex/ data/ftindex
+rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/db/ db
+rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/updates/ updates
 
 mkdir -p log
 mkdir -p log/cron
