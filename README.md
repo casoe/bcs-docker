@@ -1,6 +1,6 @@
 # Projektron
 Dockerfile for Projektron BCS
-- Based on initial work by @higain quite some years ago
+- Based on initial work by [higain](https://github.com/higain) quite some years ago
 - Tailored to a setup running at INFORM and heavily using files which are maintained in separate repository
 - Currently working with version 21.3
 
