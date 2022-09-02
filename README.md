@@ -1,41 +1,26 @@
-# projektron
-Dockerfile for Projektron BSC
-- For projektron versions 7.32 and below please use the tag :7.32_or_less
-- For versions 7.34 and up, use the tag :7.34 or latest (= no tag)
-Please mind that you need working configs from a previous installation. Configs usually don't need to be changed, as long as the correct port is used on docker start.
+# Projektron
+Dockerfile for Projektron BCS
+- Based on initial work by @higain quite some years ago
+- Tailored to a setup running at INFORM and heavily using files which are maintained in separate repository
+- Currently working with version 21.3
 
-## Variables you need to pass on docker run:
-- BCS = directory in which bcs files will be extracted (if empty defaults to /opt/projektron/bcs)
-- JAVA_HOME (if empty defaults to /usr/lib/jvm/java-8-openjdk-amd64)
-- TOMCAT_HOME (if empty defaults to /usr/local/tomcat)
-- PROJEKTRON_VERSION (e.g. 7.30.12)
-- LICENSE (filename of your license file, e.g. company_name_license.lic)
+This is an ongoing project and mainly done on a private basis in my freetime. Therefore, it is also pushed from time to time to github. It's a of relief from my regular job since I enojy working with git and docker and want to learn more about it.
+
+## Variables you need to pass on docker run
+- JAVA_HOME (e.g. /opt/java/openjdk)
+- TOMCAT_HOME (e.g. /usr/local/tomcat)
+- BCS (e.g. /opt/projektron/bcs/server)
+- PROJEKTRON_VERSION (e.g. projektron-bcs-21.3.24)
+
+Check bcs-docker.sh
 
 ## Volumes you need to define:
-- /scripts                        (e.g. -v docker/bcs/scripts:/scripts)
-- /license                        (e.g. -v docker/bcs/license:/license)
-- /usr/local/tomcat/conf          (e.g. -v /docker/bcs/tomcat/conf:/usr/local/tomcat/conf)
-- /opt/projektron/bcs/conf        (e.g. -v /docker/bcs/opt/projektron/bcs/conf:/opt/projektron/bcs/conf)
-- for projektron versions 7.34 and above also add:
-  /opt/projektron/bcs/customlibs  (e.g. -v /docker/bcs/customlibs:/opt/projektron/bcs/customlibs)
-
-### In your scripts volume you need:
-A file called 'credentials', containing your bcs Support credentials (login name in first line, password in second line)
-e.g.
-User.Name <br/>
-Password
-
-### In your license volume you need:
-Your license file, make sure the filename fits the $LICENSE variable
-
-### In your tomcat/conf volume you need:
-Configs for tomcat (obviously)
-
-### In your bcs/conf volume you need:
-Configs for projektron
-
-### In your bcs/customlibs volume you need:
-Your database-libfile (e.g. jdbc_psql_42.jar)
+- conf (e.g. -v ~/bcs-docker/repo/conf:/opt/projektron/bcs/server/conf)
+- conf_local (e.g. -v ~/bcs-docker/repo/conf_local_docker:/opt/projektron/bcs/server/conf_local)
+- log (e.g. -v ~/bcs-docker/log:/opt/projektron/bcs/server/log)
+- files (e.g. ~/bcs-docker/data/files:/opt/projektron/bcs/server/data/files)
+- ftindex (e.g. ~/bcs-docker/data/ftindex:/opt/projektron/bcs/server/data/FTIndex)
+- tomcat/conf (e.g. ~/bcs-docker/repo/tomcat/conf85_docker:/usr/local/tomcat/conf)
 
 ## Updates:
 Updating projektron works by upgrading the container, still ALWAYS backup before changing the $PROJEKTRON_VERSION number.
@@ -46,7 +31,7 @@ Proposed procedure:
 - Backup persisted volumes
 - Backup database
 - Upgrade container with new major $PROJEKTRON_VERSION variable
-- See what happens, read log files. This might take some minutes
+- See what happens, read log files (This might take some minutes)
 
 If you encounter any errors, please consult the projektron install guidelines
 - If additional database migration is needed, ssh into the container and execute the migration according to the specific releasenotes
