@@ -4,7 +4,7 @@ Dockerfile for Projektron BCS
 - Tailored to a setup running at INFORM and heavily using files which are maintained in separate repository
 - Currently working with version 21.3
 
-This is an ongoing project and mainly done on a private basis in my freetime. Therefore, it is also pushed from time to time to github. It's a of relief from my regular job since I enojy working with git and docker and want to learn more about it.
+This is an ongoing project and mainly done on a private basis in my freetime. Therefore, it is also pushed from time to time to github. It's a kind of relief from my regular job since I enjoy working with git and docker and want to learn more about it.
 
 ## Variables you need to pass on docker run
 - JAVA_HOME (e.g. /opt/java/openjdk)
