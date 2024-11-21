@@ -2,6 +2,8 @@
 set -o nounset
 set -o errexit
 
+PROJEKTRON_VERSION=projektron-bcs-24.1.27
+
 mkdir -p repo
 
 if [ -z "$(ls -A repo)" ]; then
@@ -22,10 +24,10 @@ mkdir -p data
 mkdir -p updates
 
 # 172.16.1.102 is the BCS test server
-rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/files/ data/files
-rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/ftindex/ data/ftindex
-rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/restore/db/ db
-rsync -avP --no-p --delete root@172.16.1.102:/opt/projektron/bcs/updates/ updates
+rsync -avP --no-p --delete csoehren@172.16.1.102:/opt/projektron/bcs/restore/files/ data/files
+rsync -avP --no-p --delete csoehren@172.16.1.102:/opt/projektron/bcs/restore/ftindex/ data/ftindex
+rsync -avP --no-p --delete csoehren@172.16.1.102:/opt/projektron/bcs/restore/db/ db
+rsync -avP --no-p --delete csoehren@172.16.1.102:/opt/projektron/bcs/updates/ updates
 
 mkdir -p log
 mkdir -p log/cron
@@ -34,8 +36,8 @@ mkdir -p install
 
 cd install
 rm -rf *
-cp -v ../updates/projektron-bcs-latest.zip .
-unzip projektron-bcs-latest.zip -d server
+cp -v ../updates/$PROJEKTRON_VERSION.zip .
+unzip $PROJEKTRON_VERSION.zip -d server
 cp -vr ../repo/* server/
 rm -vrf server/conf*
 rm -vrf server/tomcat*
@@ -44,7 +46,7 @@ cd server
 tar cvzf ../server.tar.gz .
 
 cd ..
-rm -rf projektron-bcs-latest.zip
+rm -rf $PROJEKTRON_VERSION.zip
 rm -rf server
 
 cd ..
